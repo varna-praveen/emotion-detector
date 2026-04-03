@@ -6,6 +6,7 @@ def emotion_detector(text_to_analyse):
         "joy": 0.90,
         "sadness": 0.04
     }
+
     dominant_emotion = max(emotions, key=emotions.get)
 
     return {
