@@ -6,11 +6,15 @@ app = Flask(__name__)
 @app.route("/emotionDetector", methods=["GET"])
 def detect_emotion():
     text = request.args.get("text")
-    
-    if not text:
-        return jsonify({"error": "No input provided"}), 400
+
+    if text is None or text.strip() == "":
+        return jsonify({"error": "Invalid text! Please try again!"}), 400
 
     result = emotion_detector(text)
+
+    if "error" in result:
+        return jsonify(result), 400
+
     return jsonify(result)
 
 if __name__ == "__main__":
