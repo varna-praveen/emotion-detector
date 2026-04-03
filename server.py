@@ -1,3 +1,5 @@
+"""Flask server for Emotion Detection application."""
+
 from flask import Flask, request, jsonify
 from EmotionDetection import emotion_detector
 
@@ -6,6 +8,7 @@ app = Flask(__name__)
 
 @app.route("/emotionDetector", methods=["GET"])
 def detect_emotion():
+    """Handle emotion detection requests and return JSON response."""
     text = request.args.get("text")
 
     if text is None or text.strip() == "":
